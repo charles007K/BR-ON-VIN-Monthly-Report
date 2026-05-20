@@ -13,8 +13,8 @@ export async function onRequestPost({ request, env }) {
     // ====================== 你的报告密码配置 ======================
     // 注意：报告名称必须是小写
     const passwords = {
-      brandonaprilreport: env.PASS_ABCD || "123456",     // ABCD.html 对应的密码
-      gp_it_av_renovation_report: env.PASS_QWER || "123456",     // QWER.html 对应的密码
+      brandonaprilreport: env.PASS_brandonaprilreport || "123456",     // ABCD.html 对应的密码
+      gp_it_av_renovation_report: env.PASS_gpitavrenovationreport || "123456",     // QWER.html 对应的密码
       // 如果以后还有其他报告，继续在这里添加，例如：
       // aa: env.PASS_AA || "password_for_aa",
     };
