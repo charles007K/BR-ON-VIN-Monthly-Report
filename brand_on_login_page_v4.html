@@ -1,0 +1,238 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .login-root {
+    min-height: 600px;
+    background: linear-gradient(160deg, #0a1a3a 0%, #0d2a50 40%, #0e4a4a 75%, #0d6b5a 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    padding: 2rem 1rem;
+    position: relative;
+  }
+
+  .login-card {
+    width: 100%;
+    max-width: 400px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .login-logo .brand {
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 1.5px;
+  }
+
+  .login-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .field-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  select.login-select, input.login-input {
+    width: 100%;
+    height: 44px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 14px;
+    padding: 0 14px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  select.login-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+
+  select.login-select option { background: #0d2a50; color: #fff; }
+
+  select.login-select:focus, input.login-input:focus {
+    border-color: rgba(100,200,180,0.6);
+    background: rgba(255,255,255,0.1);
+  }
+
+  input.login-input::placeholder { color: rgba(255,255,255,0.3); }
+
+  .pw-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .pw-wrap input { padding-right: 44px; flex: 1; }
+
+  .pw-eye {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: rgba(255,255,255,0.4);
+    font-size: 17px;
+    line-height: 1;
+    user-select: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .pw-eye:hover { color: rgba(255,255,255,0.85); }
+
+  .login-btn {
+    width: 100%;
+    height: 46px;
+    background: linear-gradient(135deg, #1a8a72 0%, #0d6b5a 100%);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+
+  .login-btn:hover { opacity: 0.88; }
+  .login-btn:active { transform: scale(0.98); }
+
+  .login-footer {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .lang-btn {
+    padding: 6px 20px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+  }
+
+  .lang-btn.active {
+    background: rgba(100,200,180,0.2);
+    border-color: rgba(100,200,180,0.6);
+    color: #fff;
+  }
+
+  .lang-btn:hover:not(.active) { background: rgba(255,255,255,0.1); color: #fff; }
+
+  @media (max-width: 480px) {
+    .login-card { padding: 2rem 1.25rem; border-radius: 12px; }
+    .login-root { padding: 1.5rem 1rem 4rem; }
+  }
+</style>
+
+<div class="login-root">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="brand">Charles Project Platform</div>
+    </div>
+
+    <div class="login-fields">
+      <div>
+        <label class="field-label" id="lbl-report">Report</label>
+        <select class="login-select" id="reportSelect">
+          <option value="" disabled selected id="opt-select">— Select report —</option>
+          <option value="https://github.com/charles007K/BR-ON-VIN-Monthly-Report.git/AA.HTML">AA</option>
+          <option value="https://github.com/charles007K/BR-ON-VIN-Monthly-Report.git/BB.HTML">BB</option>
+          <option value="https://github.com/charles007K/BR-ON-VIN-Monthly-Report.git/CC.HTML">CC</option>
+          <option value="https://github.com/charles007K/BR-ON-VIN-Monthly-Report.git/DD.HTML">DD</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="field-label" id="lbl-pwd">Password</label>
+        <div class="pw-wrap">
+          <input class="login-input" id="pwInput" placeholder="••••••••" />
+          <span class="pw-eye" id="pwToggle" aria-label="Toggle password">
+            <i class="ti ti-eye" id="eyeIcon" aria-hidden="true"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <button class="login-btn" id="goBtn" type="button">
+      <span id="btn-text">Enter →</span>
+    </button>
+  </div>
+
+  <div class="login-footer">
+    <button class="lang-btn active" id="btn-en" type="button" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btn-zh" type="button" onclick="setLang('zh')">中文</button>
+  </div>
+</div>
+
+<script>
+const strings = {
+  en: { report: "Report", optSelect: "— Select report —", pwd: "Password", btn: "Enter →", errSelect: "Please select a report first." },
+  zh: { report: "报告", optSelect: "— 选择报告 —", pwd: "密码", btn: "进入 →", errSelect: "请先选择一个报告。" }
+};
+
+let lang = 'en';
+let pwVisible = false;
+
+function setLang(l) {
+  lang = l;
+  const s = strings[l];
+  document.getElementById('lbl-report').textContent = s.report;
+  document.getElementById('opt-select').textContent = s.optSelect;
+  document.getElementById('lbl-pwd').textContent = s.pwd;
+  document.getElementById('btn-text').textContent = s.btn;
+  document.getElementById('btn-en').classList.toggle('active', l === 'en');
+  document.getElementById('btn-zh').classList.toggle('active', l === 'zh');
+}
+
+document.getElementById('pwToggle').addEventListener('click', function() {
+  pwVisible = !pwVisible;
+  document.getElementById('pwInput').setAttribute('type', pwVisible ? 'text' : 'password');
+  document.getElementById('eyeIcon').className = pwVisible ? 'ti ti-eye-off' : 'ti ti-eye';
+});
+
+document.getElementById('goBtn').addEventListener('click', function() {
+  const url = document.getElementById('reportSelect').value;
+  if (!url) { alert(strings[lang].errSelect); return; }
+  window.open(url, '_blank');
+});
+
+document.getElementById('pwInput').setAttribute('type', 'password');
+</script>
