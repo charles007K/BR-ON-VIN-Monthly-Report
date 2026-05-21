@@ -2,18 +2,26 @@
 export async function onRequestPost({ request, env }) {
   try {
     const { report, password } = await request.json();
+
     console.log("收到报告名称:", report);
     console.log("环境变量 PASS_brandonaprilreport =", env.PASS_brandonaprilreport ? "存在" : "不存在！");
     console.log("环境变量 PASS_gpitavrenovationreport =", env.PASS_gpitavrenovationreport ? "存在" : "不存在");
     console.log("所有可用 key:", Object.keys(passwords));
-  }
 
     if (!report || !password) {
       return new Response(
-        JSON.stringify({ error: "报告名称或密码不能为空" }), 
+        JSON.stringify({ error: "报告名称或密码不能为空" }),
         { status: 400, headers: { "Content-Type": "application/json" } }
       );
     }
+
+  } catch (e) {
+    return new Response(
+      JSON.stringify({ error: "请求解析失败" }),
+      { status: 400, headers: { "Content-Type": "application/json" } }
+    );
+  }
+}
 
     // ====================== 你的报告密码配置 ======================
     // 注意：报告名称必须是小写
